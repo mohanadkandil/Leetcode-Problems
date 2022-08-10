@@ -2,16 +2,22 @@ class Solution {
 public:
     int majorityElement(vector<int>& nums) {
         
-        int majority = floor(nums.size()/2);
-        int answer = 0;
+        // Moore's Voting Alogrithm
+        // Time: O(n)
+        // Space: O(1)
         
-        unordered_map<int, int> mp;
-        for(int i = 0; i < nums.size(); i++){
-            mp[nums[i]]++;
-            if (mp[nums[i]] > nums.size() / 2)
-                return nums[i];
+        int count = 0, element = 0;
+        
+        for(auto it : nums) {
+            
+            if (count == 0)
+                element = it;
+            
+            if (it == element)
+                count++;
+            else
+                count--;
         }
-        return -1;
-        
+        return element;
     }
 };
