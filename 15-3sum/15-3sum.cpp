@@ -21,6 +21,8 @@ public:
                     left++;
                     while(nums[left] == nums[left - 1] and left < right)
                         left++;
+                    while(nums[right] == nums[right - 1] and left < right)
+                        right--;
                     
                 }
             }
