@@ -8,19 +8,16 @@ class Solution:
         
         dummy = ListNode(0, head)
         
-        left = dummy
-        
-        right = head
-        
-        while n > 0 and right:
-            right = right.next
-            n -= 1
-        
-        while right:
-            left = left.next
-            right = right.next
+        fast, slow = head, dummy
+    
+        for i in range(n):
+            fast = fast.next
             
-        left.next = left.next.next
+        while fast:
+            fast = fast.next
+            slow = slow.next
+            
+        slow.next = slow.next.next
         
         return dummy.next
         
