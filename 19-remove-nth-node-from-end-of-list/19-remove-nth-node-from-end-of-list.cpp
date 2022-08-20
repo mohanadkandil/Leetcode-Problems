@@ -1,23 +1,33 @@
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
-class Solution:
-    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode *ptr1 = head,*ptr2 = head, *tmp = new ListNode;
         
-        dummy = ListNode(0, head)
+        while(n--){
+            ptr1 = ptr1->next;
+            if(!ptr1)
+                return head->next;
+        }
+        while(ptr1->next){
+            ptr1 = ptr1->next;
+            ptr2 = ptr2->next;
+        }
+        tmp = ptr2->next;
+        ptr2->next = ptr2->next->next;
+        delete tmp;
+        return head;
         
-        fast, slow = head, dummy
-    
-        for i in range(n):
-            fast = fast.next
-            
-        while fast:
-            fast = fast.next
-            slow = slow.next
-            
-        slow.next = slow.next.next
         
-        return dummy.next
-        
+    }
+};
+
